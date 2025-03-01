@@ -55,6 +55,8 @@ export const createProject = async (formData) => {
 export const updateProject = async (id, formData) => {
   const response = await axios.put(`${API_URL}/projects/${id}`, formData, {
     headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+
       "Content-Type": "multipart/form-data", // Set content type for file upload
     },
   });

@@ -7,6 +7,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\VideoController;
+use Illuminate\Http\Middleware\HandleCors;
 
 // Public routes
 Route::apiResource('skills', SkillController::class)->only(['index', 'show']);
@@ -37,7 +38,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/upload', [FileCvController::class, 'upload']);
     Route::delete('/delete', [FileCvController::class, 'delete']);
     Route::delete('/file-cv/truncate', [FileCvController::class, 'truncate']);
-    Route::post('/videos/upload', [VideoController::class, 'upload']);
+    // Route::post('/videos/upload', [VideoController::class, 'upload']);
+
+
+    Route::middleware([HandleCors::class])->group(function () {
+        Route::post('/videos/upload', [VideoController::class, 'upload']);
+    });
+
+
     Route::delete('/videos/{id}', [VideoController::class, 'delete']);
     Route::post('/logout', [AuthController::class, 'logout']);
 

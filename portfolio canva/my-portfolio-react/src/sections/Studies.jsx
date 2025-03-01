@@ -10,26 +10,27 @@ const Studies = () => {
       field: "Computer Science",
       duration: "2023 - 2024",
       description:
-        "Professional  Bachelor's degree  in Computer Engineering and digitalization.",
+        "Professional Bachelor's degree in Computer Engineering and digitalization.",
     },
     {
       id: 2,
       degree: "Technician Diploma",
       institution: "ISTA Kenitra",
       field: "Computer network technician Specialized",
-      // duration: "2016 - 2018",
       description:
         "Computer network administration, Design of switched local area networks, Supervision of computer networks,...",
     },
   ];
 
   const [videoUrl, setVideoUrl] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
   // Fetch the video URL from your Laravel backend
   useEffect(() => {
     const fetchVideo = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/api/videos/5/play"); // Replace `1` with the actual video ID
+        const response = await fetch("http://127.0.0.1:8000/api/videos/5/play"); // Replace `5` with the actual video ID
         if (response.ok) {
           const blob = await response.blob();
           const url = URL.createObjectURL(blob);
@@ -45,15 +46,61 @@ const Studies = () => {
     fetchVideo();
   }, []);
 
+  // Handle file selection
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  // Handle file upload
+  const handleUpload = async () => {
+    if (!selectedFile) {
+      alert("Please select a video file to upload.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("title", selectedFile.name); // Use the file name as the title
+    formData.append("video", selectedFile);
+
+    setUploading(true);
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/videos/upload", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+    
+          "Content-Type": "multipart/form-data", // Set content type for file upload
+        },
+        
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        alert("Video uploaded successfully!");
+        console.log("Uploaded Video:", result.video);
+      } else {
+        console.error("Failed to upload video");
+        alert("Failed to upload video.");
+      }
+    } catch (error) {
+      console.error("Error uploading video:", error);
+      alert("Error uploading video.");
+    } finally {
+      setUploading(false);
+    }
+  };
+
   return (
     <div className="grid grid-cols-2 max-lg:grid-cols-1">
       <div
         className="mt-28 m-4 p-6 rounded-lg shadow-lg"
         style={{
-          background: "rgba(255, 255, 255, 0.3)", // Semi-transparent white background
-          backdropFilter: "blur(10px)", // Blur effect for the glassy look
-          border: "1px solid rgba(255, 255, 255, 0.2)", // Light border for depth
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Subtle shadow
+          background: "rgba(255, 255, 255, 0.3)",
+          backdropFilter: "blur(10px)",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         }}
       >
         <h2 className="text-2xl font-bold text-gray-200 mb-1">Education</h2>
@@ -71,16 +118,28 @@ const Studies = () => {
           ))}
         </div>
       </div>
-      <div className=" mt-28 m-4">
+      <div className="mt-28 m-4">
         {videoUrl ? (
-          // <video controls className="w-full h-auto">
-          //   <source src={videoUrl} type="video/mp4" />
-          //   Your browser does not support the video tag.
-          // </video>
           <VideoPlayer videoUrl={videoUrl} />
         ) : (
           <p>Loading video...</p>
         )}
+
+        <div className="mt-4">
+          <input
+            type="file"
+            accept="video/mp4,video/quicktime"
+            onChange={handleFileChange}
+            className="mb-2"
+          />
+          <button
+            onClick={handleUpload}
+            disabled={uploading}
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:bg-blue-300"
+          >
+            {uploading ? "Uploading..." : "Upload new Video"}
+          </button>
+        </div>
       </div>
     </div>
   );
