@@ -1,26 +1,62 @@
+// import { FaPhone, FaEnvelope } from "react-icons/fa"; // Assuming you're using react-icons
+
+// export default function Contact() {
+//   return (
+//     <div className="h-full flex items-center justify-center">
+//       <div className="text-center contactcard p-8 rounded-lg shadow-lg">
+//         <h1 className="text-4xl text-white font-bold mb-8">Contact</h1>
+//         <div className="flex items-center justify-center gap-2">
+//           <FaPhone className="text-slate-300" />
+//           <a href="tel:+212700161503" className="text-slate-300 font-bold hover:text-green-500 transition-colors">
+//             +212700161503
+//           </a>
+//         </div>
+//         <div className="flex items-center justify-center gap-2 mt-2">
+//           <FaEnvelope className="text-slate-300" />
+//           <a href="mailto:elmaarpro@gmail.com" className="text-slate-300 font-bold hover:text-green-500 transition-colors">
+//             elmaarpro@gmail.com
+//           </a>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
 export default function Contact() {
-    return (
-      <div className="h-full  flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-8">Contact</h1>
-          <form className="max-w-2xl mx-auto">
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Name</label>
-              <input type="text" className="w-full px-4 py-2 border rounded-lg" placeholder="Your Name" />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Email</label>
-              <input type="email" className="w-full px-4 py-2 border rounded-lg" placeholder="Your Email" />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Message</label>
-              <textarea className="w-full px-4 py-2 border rounded-lg" rows="5" placeholder="Your Message"></textarea>
-            </div>
-            <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
-              Send Message
-            </button>
-          </form>
+  return (
+    <div className="h-full flex items-center justify-center">
+      <div className="text-center contactcard p-8 rounded-lg shadow-lg shadow-green-700 ">
+        <h1 className="text-4xl text-indigo-700 font-bold mb-8">Contact</h1>
+
+        <div className="grid grid-cols-1">
+          <a className="text-slate-900 font-bold mr-4 hover:text-green-500 transition-colors">
+            +212700161503
+          </a>
+          <a
+            href="tel:+212700161503"
+            className="text-slate-300 font-bold hover:text-green-500 transition-colors"
+          >
+            <img className="w-40" src="/phonee.svg" alt="" />
+          </a>
+        </div>
+        <div className="grid grid-cols-1 gap-y-2">
+
+       
+        <a
+          
+          className="text-slate-900 font-bold hover:text-green-500 transition-colors"
+        >
+          elmaarpro@gmail.com
+        </a>
+
+        <a
+          href="mailto:elmaarpro@gmail.com"
+          className="text-slate-900 font-bold mx-auto hover:text-green-500 transition-colors"
+        >
+          <img className="w-28" src="/mailicon.svg" alt="" />
+        </a>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}

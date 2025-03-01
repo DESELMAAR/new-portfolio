@@ -60,86 +60,104 @@ body, html {
 @media screen and (max-width: 1400px) {
   .innerdiv {
     height: 560px;
+    /* height: 100%; */
   }
 }
 
 @media screen and (min-width: 1401px) {
-  .innerdiv2 {
+  .innerdiva {
     height: 800px;
   }
 }
 
 @media screen and (max-width: 1400px) {
-  .innerdiv2 {
+  .innerdiva {
     height: 560px;
   }
 }
 
 @media screen and (min-width: 1401px) {
-  .innerdiv3 {
+  .innerdivb {
     height: 800px;
   }
 }
 
 @media screen and (max-width: 1400px) {
-  .innerdiv3 {
+  .innerdivb {
     height: 560px;
   }
 }
 
 @media screen and (min-width: 1401px) {
-  .innerdiv4 {
+  .innerdivc {
     height: 800px;
   }
 }
 
 @media screen and (max-width: 1400px) {
-  .innerdiv4 {
+  .innerdivc {
     height: 560px;
   }
 }
-.innerdiv{
-  /* height: 600px; */
-  background-image: url("./assets/bg22.svg") ;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  
 
-}
 
 .innerdiv{
-  background-image: url("./assets/bg22.svg") ;
+  background-image: url("./assets/bgb.png") ;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   box-shadow: 0 0 5px 5px rgb(113, 170, 207);
 }
 
-.innerdiv2{
-  background-image: url("./assets/bg22.svg") ;
+.innerdiva{
+  background-image: url("./assets/bga.svg") ;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  box-shadow: 0 0 5px 5px rgb(207, 201, 113);
+  box-shadow: 0 0 5px 5px rgb(113, 170, 207);
 }
 
-.innerdiv3{
-  background-image: url("./assets/bg22.svg") ;
+.innerdivb{
+  background-image: url("./assets/bgc.png") ;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  box-shadow: 0 0 5px 5px rgb(141, 190, 8);
+  box-shadow: 0 0 5px 5px rgb(113, 170, 207);
 }
 
-.innerdiv4{
-  background-image: url("./assets/bg22.svg") ;
+.innerdivc{
+  background-image: url("./assets/b.png") ;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  box-shadow: 0 0 5px 5px rgb(142, 212, 10);
+  box-shadow: 0 0 5px 5px rgb(113, 170, 207);
 }
 
+
+
+@media screen and (max-width: 800px) {
+  .innerdiv {
+    height: fit-content;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .innerdiva {
+    height: fit-content;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .innerdivb {
+    height: fit-content;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .innerdivc {
+    height: fit-content;
+  }
+}
 /* nav style */
 
 .nav-link {
@@ -271,4 +289,11 @@ video {
 
 .custom-controls span {
   font-size: 14px;
+}
+
+.contactcard {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+  backdrop-filter: blur(10px); /* Blur effect for the glassy look */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Light border for depth */
+  box-shadow: 0 4px 6px rgba(131, 58, 58, 0.1); /* Subtle shadow */
 }
